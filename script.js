@@ -64,12 +64,15 @@ document.body.addEventListener("click", (e) => {
   // 오버레이가 열려 있으면 닫기, 아니면 열기
   if (!inputOverlay.classList.contains("hidden")) {
     inputOverlay.classList.add("hidden");
+    document.body.classList.remove("overlay-open");
     return;
   }
   inputOverlay.classList.remove("hidden");
+  document.body.classList.add("overlay-open");
   todoInput.value = '';
   todoInput.placeholder = "오늘 새롭게 할 일을 입력하세요.";
   todoInput.focus();
+  adjustInputPosition();
 });
 
 // blur 이벤트는 제거 (불필요)
