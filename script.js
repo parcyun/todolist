@@ -18,7 +18,6 @@ if (!todos) {
 }
 
 // ====== 오버레이 열릴 때 스크롤 위치 저장용 ======
-let scrollY = 0;
 
 // ====== 날짜 포맷 함수 ======
 function formatDate(date) {
@@ -66,71 +65,28 @@ function renderTodos() {
   });
 }
 
-// ====== 빈 공간 클릭 시 오버레이 열기/닫기 및 스크롤 고정 ======
+// ====== 빈 공간 클릭 시 오버레이 열기/닫기 및 화면 고정 ======
 document.body.addEventListener("click", (e) => {
-  // 할 일 항목, 입력창 클릭 시 오버레이 열지 않음
-  if (
-    e.target.closest('#todo-list li') ||
-    e.target === todoInput
-  ) return;
-
-  // 오버레이가 열려 있으면 닫기 + 스크롤 복원
-  if (!inputOverlay.classList.contains("hidden")) {
-    inputOverlay.classList.add("hidden");
-    document.body.classList.remove("overlay-open");
-    // 스크롤 위치 복원
-    window.scrollTo(0, scrollY);
-    document.body.style.top = '';
-    return;
-  }
-  // 오버레이 열기 + 스크롤 고정
-  inputOverlay.classList.remove("hidden");
-  scrollY = window.scrollY;
-  document.body.classList.add("overlay-open");
-  document.body.style.top = `-${scrollY}px`;
-  todoInput.value = '';
-  todoInput.placeholder = "오늘 새롭게 할 일을 입력하세요.";
-  todoInput.focus();
-  adjustInputPosition();
-});
-
-// ====== 입력창에서 Enter 입력 시 할 일 추가 ======
-todoInput.addEventListener("keydown", (e) => {
-  // Enter 키 입력 시 할 일 추가
-  if (e.key === "Enter" && !e.shiftKey) {
-    e.preventDefault();
-    const value = todoInput.value.trim();
-    if (value) {
-      todos.unshift({ text: value, done: false });
-      saveTodos();
-      renderTodos();
+    // 할 일 항목, 입력창 클릭 시 오버레이 열지 않음
+    if (
+      e.target.closest('#todo-list li') ||
+      e.target === todoInput
+    ) return;
+  
+    // 오버레이가 열려 있으면 닫기
+    if (!inputOverlay.classList.contains("hidden")) {
+      inputOverlay.classList.add("hidden");
+      document.body.classList.remove("overlay-open");
+      return;
     }
-    todoInput.value = "";
-    inputOverlay.classList.add("hidden");
-  }
-});
-
-// ====== 입력창 위치를 동적으로 조정(키보드 대응) ======
-function adjustInputPosition() {
-  // 입력창이 키보드에 가리지 않도록 위치 조정
-  const overlay = document.getElementById('inputOverlay');
-  const input = document.getElementById('todoInput');
-  if (!overlay || !input) return;
-
-  // 전체 높이와 현재 뷰포트 높이 차이 계산
-  const windowHeight = window.innerHeight;
-  // 오버레이가 열려 있을 때만 조정
-  if (!overlay.classList.contains('hidden')) {
-    // 화면의 20% 아래에 위치, 단 키보드가 올라오면 자동으로 위로
-    input.style.marginTop = Math.max(windowHeight * 0.18, 32) + 'px';
-  }
-}
-
-// ====== 오버레이 열릴 때, 리사이즈, 방향 전환, 첫 로딩 시 위치 조정 ======
-document.getElementById('inputOverlay').addEventListener('transitionend', adjustInputPosition);
-window.addEventListener('resize', adjustInputPosition);
-window.addEventListener('orientationchange', adjustInputPosition);
-document.addEventListener('DOMContentLoaded', adjustInputPosition);
+    // 오버레이 열기 + body 고정
+    inputOverlay.classList.remove("hidden");
+    document.body.classList.add("overlay-open");
+    todoInput.value = '';
+    todoInput.placeholder = "오늘 새롭게 할 일을 입력하세요.";
+    todoInput.focus();
+    adjustInputPosition();
+  });
 
 // ====== 날짜 표시 및 할 일 목록 초기 렌더링 ======
 updateDate();
