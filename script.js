@@ -88,5 +88,25 @@ todoInput.addEventListener("keydown", (e) => {
   }
 });
 
+function adjustInputPosition() {
+  const overlay = document.getElementById('inputOverlay');
+  const input = document.getElementById('todoInput');
+  if (!overlay || !input) return;
+
+  // 전체 높이와 현재 뷰포트 높이 차이 계산
+  const windowHeight = window.innerHeight;
+  // 오버레이가 열려 있을 때만 조정
+  if (!overlay.classList.contains('hidden')) {
+    // 화면의 20% 아래에 위치, 단 키보드가 올라오면 자동으로 위로
+    input.style.marginTop = Math.max(windowHeight * 0.18, 32) + 'px';
+  }
+}
+
+// 오버레이가 열릴 때마다, 그리고 리사이즈/오리엔테이션 변경 시마다 실행
+document.getElementById('inputOverlay').addEventListener('transitionend', adjustInputPosition);
+window.addEventListener('resize', adjustInputPosition);
+window.addEventListener('orientationchange', adjustInputPosition);
+document.addEventListener('DOMContentLoaded', adjustInputPosition);
+
 updateDate();
 renderTodos();
