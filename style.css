@@ -1,0 +1,150 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', 'Nanum Gothic', Arial, sans-serif;
+    font-weight: 100;
+    background: #ffffff;
+    height: 100vh;
+  }
+
+/* 한글에만 Nanum Gothic Light 적용 */
+:lang(ko), body:lang(ko) {
+    font-family: 'Nanum Gothic', 'Montserrat', Arial, sans-serif;
+    font-weight: 300;
+}
+
+
+#main {
+    max-width: 400px;
+    margin: 48px auto 0 auto;
+    padding: 0 16px;
+}
+
+#date-title {
+    font-size: 2.8em;
+    font-weight: 100;
+    margin: 32px 0 32px 0;
+    text-align: left;
+    letter-spacing: 0.05em;
+}
+
+#todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+#todo-list li {
+    display: flex;
+    align-items: center;
+    font-size: 0.8em;
+    margin-bottom: 12px;
+    color: #222;
+}
+
+#todo-list input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    background: #fff;
+    margin-right: 12px;
+    cursor: pointer;
+    position: relative;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+#todo-list input[type="checkbox"]:checked {
+    background: #a0a0a0;
+    border-color: #a0a0a0;
+}
+
+#todo-list .completed {
+    text-decoration: line-through;
+    color: #a0a0a0;
+}
+
+#todoInput {
+    display: none;
+}
+
+#inputOverlay {
+    display: none;
+}
+
+  
+  .container {
+    padding: 2rem;
+  }
+  
+  #date-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  input[type="checkbox"] {
+    margin-right: 0.5rem;
+  }
+  
+  .completed {
+    text-decoration: line-through;
+    color: #707070;
+  }
+  
+  #inputOverlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in, visibility 0.5s ease-out;
+}
+
+#inputOverlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+#inputOverlay.hidden {
+    display: none;
+}
+#todoInput {
+    display: block;
+    width: 90vw;
+    max-width: 360px;
+    font-size: 1.8em;
+    font-family: 'Noto Sans KR', 'Segoe UI', Arial, sans-serif;
+    font-weight: 400;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #707070;
+    text-align: center;
+    caret-color: #222;
+    padding: 0.5em 0;
+    box-sizing: border-box;
+}
+
+
+  
