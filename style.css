@@ -155,6 +155,9 @@ body.overlay-open {
     overflow: hidden;
     position: fixed;
     width: 100vw;
+    top: 0;
+    left: 0;
+    height: 100vh;
 }
 
   
