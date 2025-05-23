@@ -56,7 +56,7 @@ function openOverlay() {
   document.body.classList.add("overlay-open");
   todoInput.value = '';
   todoInput.placeholder = "오늘 새롭게 할 일을 입력하세요.";
-  setTimeout(() => { todoInput.focus(); }, 10); // 반드시 키보드가 뜨도록 약간의 딜레이 후 focus
+  todoInput.focus(); // 딜레이 없이 바로 포커스
   // placeholder 위치 조정 (CSS에서 margin-top: 30vh;로 이미 적용)
 }
 function closeOverlay() {
