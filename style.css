@@ -16,13 +16,14 @@ body, html {
 
 #main {
     max-width: 400px;
-    margin: 48px auto 0 auto;
-    padding: 0 16px;
+    margin: 96px auto 0 auto;
+    padding: 0 32px;
 }
 
 #date-title {
     font-size: 2.8em;
-    font-weight: 100;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 200;
     margin: 32px 0 32px 0;
     text-align: left;
     letter-spacing: 0.05em;
@@ -118,7 +119,7 @@ body, html {
     z-index: 1000;
     opacity: 1;
     visibility: visible;
-    transition: opacity 0.5s ease-in, visibility 0.5s ease-out;
+    transition: opacity 0.1s ease-in, visibility 0.1s ease-out;
 }
 
 #inputOverlay.hidden {
@@ -126,25 +127,34 @@ body, html {
     visibility: hidden;
     pointer-events: none;
 }
-#inputOverlay.hidden {
-    display: none;
-}
 #todoInput {
     display: block;
     width: 90vw;
     max-width: 360px;
-    font-size: 1.8em;
+    font-size: 1.4em;
     font-family: 'Noto Sans KR', 'Segoe UI', Arial, sans-serif;
     font-weight: 400;
     border: none;
     outline: none;
     background: transparent;
-    color: #707070;
+    color: #a0a0a0;
     text-align: center;
     caret-color: #222;
     padding: 0.5em 0;
     box-sizing: border-box;
 }
 
+#todoInput::placeholder {
+    font-family: 'Nanum Gothic', Arial, sans-serif;
+    font-weight: 300;
+    color: #707070;
+}
+
+
+body.overlay-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100vw;
+}
 
   
